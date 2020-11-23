@@ -1,0 +1,24 @@
+version: '3.1'
+
+services:
+ 
+  php:
+   build: .
+   ports:
+     - "8080:80"
+   volumes: 
+     - ./www:/var/www/html
+
+  db:
+    image: mariadb:10.3
+    restart: always
+    volumes: 
+     - "./.docker/dbteste:/var/lib/mysql"
+    environment: 
+      MYSQL_ROOT_PASSWORD: A!234567
+
+  phpmyadmin: 
+   image: phpmyadmin
+   restart: always
+   ports:
+    - 8000:80
